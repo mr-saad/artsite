@@ -32,9 +32,9 @@ export default function Footer() {
           <div>
             <Link
               className="transition hover:text-black dark:hover:text-white"
-              href={"/terms-conditions"}
+              href={"/terms-service"}
             >
-              Terms & Conditions
+              Terms of Service
             </Link>{" "}
             |{" "}
             <Link

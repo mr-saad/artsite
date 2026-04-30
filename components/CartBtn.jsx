@@ -11,10 +11,11 @@ import {
 } from "./ui/sheet";
 import { remove, useCart } from "@/lib/store/useCart";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function CartBtn() {
 	const cart = useCart((state) => state.items);
-	const total = cart.reduce((prev, item) => prev + item.discountedPrice, 0);
+	const total = cart.reduce((prev, curr) => prev + curr.discountedPrice, 0);
 
 	return (
 		<Sheet>
@@ -44,15 +45,18 @@ export default function CartBtn() {
 											height={50}
 											className="object-cover aspect-square rounded-md"
 										/>
-										<p className="font-serif text-base">
-											{item.title}
-										</p>
+										<div>
+											<Link href={"/p/"+item.slug} className="font-serif text-base">
+												{item.title}
+											</Link>
+											<p className="text-black dark:text-white">₹{item.discountedPrice}</p>
+										</div>
 									</div>
 									<Button
-										variant="ghost"
+										variant="destructive"
 										onClick={() => remove(item.id)}
 									>
-										<HugeiconsIcon icon={Delete} />
+										<HugeiconsIcon className="size-4" icon={Delete} />
 									</Button>
 								</div>
 							);
@@ -62,6 +66,9 @@ export default function CartBtn() {
 					)}
 				</div>
 				<SheetFooter>
+					<div className="border-t py-3">
+						<p className="text-xl text-black dark:text-white">Total: ₹{total}</p>
+					</div>
 					<SheetClose
 						render={<Button variant="outline">Close</Button>}
 					/>

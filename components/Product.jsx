@@ -26,7 +26,7 @@ export default function Product({
       title={title}
       className="active:cursor-grabbing bg-white block h-full group overflow-clip"
     >
-      <Link href={slug} className="relative">
+      <Link href={"/p/"+slug} className="relative">
         <div className="absolute top-0 left-0 z-1 bg-black text-white px-1 rounded-br-lg text-sm">
           {discountPercent}% off
         </div>
@@ -52,10 +52,9 @@ export default function Product({
           <Button
             title="Remove from Cart"
             onClick={() => remove(id)}
-            variant="ghost"
-
+            variant="destructive"
           >
-            <HugeiconsIcon className="size-6" icon={ShoppingBagRemoveIcon} />
+            <HugeiconsIcon className="size-4" icon={ShoppingBagRemoveIcon} />
           </Button>
         ) : (
           <Button
@@ -72,9 +71,8 @@ export default function Product({
                   "https://dessineart.com/cdn/shop/files/Image-1-Quantum-Waves.jpg",
               })
             }
-            variant="ghost"
           >
-            <HugeiconsIcon className="size-6" icon={ShoppingBagAddIcon} />
+            <HugeiconsIcon className="size-4" icon={ShoppingBagAddIcon} />
           </Button>
         )}
       </div>

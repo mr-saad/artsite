@@ -1,7 +1,7 @@
 "use client"
 
 import "swiper/css"
-import "swiper/css/navigation"
+// import "swiper/css/navigation"
 import "swiper/css/pagination"
 import { Swiper, SwiperSlide } from "swiper/react"
 import Product from "./Product"
@@ -12,7 +12,7 @@ export default function ProductSwiper({ products }) {
     <Swiper
       className="my-5"
       modules={[Navigation, Pagination, Keyboard]}
-      navigation
+      // navigation
       keyboard
       loop
       pagination={{ dynamicBullets: true, clickable: true }}
