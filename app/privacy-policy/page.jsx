@@ -1,7 +1,9 @@
+import Section from "@/components/ui/section"
+
 export default function PrivacyPolicy(){
 	return (
-		<section className="container mx-auto p-5">
+		<Section>
 				<h1 className="text-2xl">PrivacyPolicy Page</h1>
-		</section>
+		</Section>
 	)
 }

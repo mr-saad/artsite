@@ -11,7 +11,7 @@ export default function ImgSwiper({ imgs, title }) {
 	const [thumbsSwiper, setThumbsSwiper] = useState();
 
 	return (
-		<div className="min-w-0">
+		<div className="min-w-0 max-w-lg">
 			<Swiper
 				modules={[Thumbs,Pagination,Keyboard]}
 				keyboard
@@ -21,7 +21,7 @@ export default function ImgSwiper({ imgs, title }) {
 					slideThumbActiveClass: "opacity-100",
 				}}
 				loop
-				className="max-w-lg bg-white"
+				className="bg-white sm:mx-0!"
 			>
 				{imgs.map((img, index) => {
 					return (
@@ -31,7 +31,7 @@ export default function ImgSwiper({ imgs, title }) {
 								alt={title}
 								width={400}
 								height={400}
-								className="aspect-square object-cover w-full"
+								className="aspect-square object-cover w-full cursor-grab active:cursor-grabbing"
 							/>
 						</SwiperSlide>
 					);
@@ -44,11 +44,11 @@ export default function ImgSwiper({ imgs, title }) {
 				modules={[Thumbs,Keyboard,Mousewheel]}
 				keyboard
 				mousewheel
-				className="max-w-lg bg-white"
+				className="bg-white sm:mx-0!"
 			>
 				{imgs.map((img, index) => {
 					return (
-						<SwiperSlide className="opacity-70 cursor-pointer" key={img + index}>
+						<SwiperSlide className="opacity-70 transition-all! cursor-pointer" key={img + index}>
 							<Image
 								src={img}
 								alt={title}

@@ -14,120 +14,7 @@ import { useEffect, useState } from "react";
 import CartBtn from "./CartBtn";
 import { categories } from "@/lib/data/products";
 
-// const paintings = [
-//   {
-//     title: "Fine Art Prints",
-//     href: "fine-art-prints",
-//   },
 
-//   {
-//     title: "Original Paintings",
-//     href: "original-paintings",
-//   },
-//   {
-//     title: "Nature Paintings",
-//     href: "nature-paintings",
-//   },
-//   {
-//     title: "Cityscape Paintings",
-//     href: "city-paintings",
-//   },
-//   {
-//     title: "Flower Paintings",
-//     href: "flower-paintings",
-//   },
-// ];
-// const artPlates = [
-//   {
-//     title: "Ceramic Art Plates",
-//     href: "ceramic-art-plates",
-//   },
-//   {
-//     title: "Hand-Painted Glass Plates",
-//     href: "glass-painted-plates",
-//   },
-//   {
-//     title: "Vintage Porcelain Plates",
-//     href: "vintage-porcelain-plates",
-//   },
-//   {
-//     title: "Metal Embossed Plates",
-//     href: "metal-embossed-plates",
-//   },
-//   {
-//     title: "Custom Portrait Plates",
-//     href: "custom-portrait-plates",
-//   },
-// ];
-
-// const mudWork = [
-//   {
-//     title: "Lippan Art (Mud & Mirror)",
-//     href: "lippan-art-mirror-work",
-//   },
-//   {
-//     title: "Terracotta Murals",
-//     href: "terracotta-murals",
-//   },
-//   {
-//     title: "Clay Relief Paintings",
-//     href: "clay-relief-paintings",
-//   },
-//   {
-//     title: "Traditional Kutch Mud Work",
-//     href: "kutch-mud-work",
-//   },
-//   {
-//     title: "Organic Textured Wall Panels",
-//     href: "textured-wall-panels",
-//   },
-// ];
-
-// const canvas = [
-//   {
-//     title: "Abstract Acrylic Canvas",
-//     href: "abstract-acrylic-canvas",
-//   },
-//   {
-//     title: "Oil Painting Portraits",
-//     href: "oil-painting-portraits",
-//   },
-//   {
-//     title: "Mixed Media Canvas",
-//     href: "mixed-media-canvas",
-//   },
-//   {
-//     title: "Oversized Wall Canvas",
-//     href: "oversized-wall-canvas",
-//   },
-//   {
-//     title: "Textured Palette Knife Art",
-//     href: "palette-knife-art",
-//   },
-// ];
-
-// const pots = [
-//   {
-//     title: "Hand-Painted Terracotta Pots",
-//     href: "hand-painted-terracotta",
-//   },
-//   {
-//     title: "Glazed Ceramic Planters",
-//     href: "glazed-ceramic-planters",
-//   },
-//   {
-//     title: "Indoor Decorative Vases",
-//     href: "indoor-decorative-vases",
-//   },
-//   {
-//     title: "Bohemian Patterned Pots",
-//     href: "bohemian-patterned-pots",
-//   },
-//   {
-//     title: "Traditional Warli Painted Pots",
-//     href: "traditional-warli-pots",
-//   },
-// ];
 
 export default function Navbar() {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -147,7 +34,7 @@ export default function Navbar() {
   return (
     <header
       className={cn(
-        "px-5 py-3 z-2 sticky top-0 bg-zinc-100",
+        "px-5 py-3 z-2 sticky top-0 bg-zinc-100 border-b",
         scrollY > 200 && "shadow",
       )}
     >
@@ -201,7 +88,7 @@ export default function Navbar() {
               isNavOpen
                 ? "translate-x-0 opacity-100"
                 : "-translate-x-full opacity-0",
-              "items-start transition-all md:translate-x-0 md:opacity-100 fixed top-0 left-0 md:static justify-start md:justify-center pt-20 md:pt-0 w-3/4 px-3 md:px-0 h-full flex-initial bg-zinc-100 md:items-center flex-col md:flex-row",
+              "items-start flex-wrap transition-all md:translate-x-0 md:opacity-100 fixed top-0 left-0 md:static justify-start md:justify-center pt-20 md:pt-0 w-3/4 px-3 md:px-0 h-full flex-initial bg-zinc-100 md:items-center flex-col md:flex-row",
             )}
           >
             {categories.map((ct) => {

@@ -1,3 +1,5 @@
+'use client'
+
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
@@ -41,7 +43,7 @@ export default function Product({
         />
       </Link>
       <div className="p-5 gap-3">
-        <Link href={slug}>
+        <Link href={"/p/"+slug}>
           <b className="text-xl font-serif">{title}</b>
           <div className="flex items-center gap-2">
             <s>₹{price}</s>

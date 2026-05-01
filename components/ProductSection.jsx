@@ -1,8 +1,9 @@
 import ProductSwiper from "./ProductSwiper"
+import Section from "./ui/section"
 
 export default function ProductSection({ title, desc, products }) {
   return (
-    <section className="container mx-auto p-5">
+    <Section>
       <div className="text-center">
         <h3 className="text-3xl text-balance font-serif">{title}</h3>
         <p>{desc}</p>
@@ -10,6 +11,6 @@ export default function ProductSection({ title, desc, products }) {
       {/* <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"> */}
       <ProductSwiper products={products} />
       {/* </div> */}
-    </section>
+    </Section>
   )
 }
