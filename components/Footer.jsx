@@ -62,12 +62,11 @@ export default function Footer() {
           </p>
           <div>
             <Link
-              className="transition hover:text-black dark:hover:text-white"
+              className="transition hover:text-black dark:hover:text-white mr-3"
               href={"/terms-service"}
             >
               Terms of Service
-            </Link>{" "}
-            |{" "}
+            </Link>
             <Link
               className="transition hover:text-black dark:hover:text-white"
               href={"/privacy-policy"}

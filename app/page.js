@@ -1,5 +1,6 @@
 import BackToTop from "@/components/BackToTop";
 import ProductSection from "@/components/ProductSection";
+import ReviewsSection from "@/components/ReviewsSection";
 import { productSections } from "@/lib/data/homeProductSections";
 import { categories } from "@/lib/data/products";
 import Image from "next/image";
@@ -53,6 +54,7 @@ export default function Home() {
       {productSections.map((sec) => {
         return <ProductSection key={sec.title} {...sec} />;
       })}
+      <ReviewsSection />
     </>
   );
 }
