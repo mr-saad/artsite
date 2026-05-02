@@ -1,9 +1,11 @@
-import BackToTop from "@/components/BackToTop"
-import ProductSection from "@/components/ProductSection"
-import { productSections } from "@/lib/data/homeProductSections"
+import BackToTop from "@/components/BackToTop";
+import ProductSection from "@/components/ProductSection";
+import { productSections } from "@/lib/data/homeProductSections";
+import { categories } from "@/lib/data/products";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
-  // console.log(productSections)
   return (
     <>
       <BackToTop />
@@ -25,11 +27,32 @@ export default function Home() {
         </div>
       </section>
 
+      <div className="mb-10 h-[80vh] relative isolate">
+        <div className="absolute bg-black/60 w-full h-full grid sm:grid-cols-2 md:grid-cols-3">
+          {categories.map((ct) => {
+            return (
+              <Link
+                className="block font-serif text-3xl transition p-5 outline text-white hover:text-black hover:bg-zinc-100 focus-visible:text-black focus-visible:bg-zinc-100"
+                key={ct.id}
+                href={ct.baseRoute}
+              >
+                {ct.title}
+              </Link>
+            );
+          })}
+        </div>
+        <Image
+          alt="ArtSite Banner Image"
+          width={1000}
+          height={1000}
+          className="w-full h-full object-cover aspect-video"
+          src="https://dessineart.com/cdn/shop/files/DA_Banner_4.jpg"
+        />
+      </div>
 
       {productSections.map((sec) => {
-              return <ProductSection key={sec.title} {...sec} />
+        return <ProductSection key={sec.title} {...sec} />;
       })}
-
     </>
-  )
+  );
 }

@@ -15,7 +15,7 @@ export default async function CategoryPage({ params }) {
 	return (
 		<Section className="grid gap-5 md:grid-cols-[1fr_3fr]">
 			<aside className="bg-white md:sticky top-21.5 p-5 max-h-[50vh]">
-				Category: {category.join("-")}
+				 <p className="capitalize">Viewing {category.join(" / ")}</p>
 			</aside>
 			{products.length > 0 ? (
 				<ProductGrid>

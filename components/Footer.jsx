@@ -1,12 +1,43 @@
-import Link from "next/link"
-import { Button } from "./ui/button"
-import { Field } from "./ui/field"
-import { Input } from "./ui/input"
+import Link from "next/link";
+import { Button } from "./ui/button";
+import { Field } from "./ui/field";
+import { Input } from "./ui/input";
+import Section from "./ui/section";
+import { categories } from "@/lib/data/products";
 
 export default function Footer() {
   return (
-    <footer className="p-5 mt-20 border-t border-zinc-200 dark:border-zinc-900">
-      <div className="container mx-auto">
+    <footer className="mt-20 border-t border-zinc-200 dark:border-zinc-900">
+      <Section
+        className={
+          "grid grid-cols-[repeat(auto-fit,minmax(min(15rem,100%),1fr))] gap-5"
+        }
+      >
+        {categories.slice(0, 4).map((ct) => {
+          return (
+            <div key={ct.id}>
+              <p className="text-black dark:text-white text-xl font-serif">
+                {ct.title}
+              </p>
+              <ul>
+                {ct.subCategories.map((sb) => {
+                  return (
+                    <li key={sb.id} className="leading-7">
+                      <Link
+                        href={sb.href}
+                        className="transition focus-visible:text-black hover:text-black dark:focus-visible:text-white dark:hover:text-white"
+                      >
+                        {sb.title}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          );
+        })}
+      </Section>
+      <Section>
         <div className="flex flex-wrap justify-between gap-5">
           <div>
             <h1 className="text-3xl font-serif text-black dark:text-white">
@@ -45,7 +76,7 @@ export default function Footer() {
             </Link>
           </div>
         </div>
-      </div>
+      </Section>
     </footer>
-  )
+  );
 }

@@ -14,8 +14,6 @@ import { useEffect, useState } from "react";
 import CartBtn from "./CartBtn";
 import { categories } from "@/lib/data/products";
 
-
-
 export default function Navbar() {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
@@ -34,8 +32,8 @@ export default function Navbar() {
   return (
     <header
       className={cn(
-        "px-5 py-3 z-2 sticky top-0 bg-zinc-100 border-b",
-        scrollY > 200 && "shadow",
+        "px-5 py-3 z-2 sticky top-0 bg-zinc-100 transition",
+        scrollY > 100 && "shadow",
       )}
     >
       <div className="container cursor-pointer flex gap-5 items-center justify-between mx-auto">
@@ -99,13 +97,13 @@ export default function Navbar() {
                   </NavigationMenuTrigger>
                   {ct.subCategories && (
                     <NavigationMenuContent>
-                      <ul className="w-96">
+                      <ul className="max-w-full">
                         {ct.subCategories.map((p) => {
                           return (
                             <li key={p.href}>
                               <Link
                                 onClick={() => setIsNavOpen(false)}
-                                className="transition text-zinc-500 hover:text-black dark:hover:text-white"
+                                className="transition block px-3 py-1 text-zinc-500 hover:text-black dark:hover:text-white"
                                 href={p.href}
                                 title={p.title}
                               >
@@ -123,7 +121,11 @@ export default function Navbar() {
             <NavigationMenuItem>
               <NavigationMenuLink
                 render={
-                  <Link onClick={() => setIsNavOpen(false)} href={"/about"}>
+                  <Link
+                    className="hover:text-black dark:hover:text-white transition"
+                    onClick={() => setIsNavOpen(false)}
+                    href={"/about"}
+                  >
                     About
                   </Link>
                 }
@@ -132,7 +134,11 @@ export default function Navbar() {
             <NavigationMenuItem>
               <NavigationMenuLink
                 render={
-                  <Link onClick={() => setIsNavOpen(false)} href={"/contact"}>
+                  <Link
+                    className="hover:text-black dark:hover:text-white transition"
+                    onClick={() => setIsNavOpen(false)}
+                    href={"/contact"}
+                  >
                     Contact
                   </Link>
                 }

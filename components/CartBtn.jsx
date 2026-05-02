@@ -27,15 +27,15 @@ export default function CartBtn() {
 					<HugeiconsIcon icon={ShoppingBag02Icon} />
 				</div>
 			</SheetTrigger>
-			<SheetContent showCloseButton={false}>
+			<SheetContent showCloseButton={false} className={"grid grid-rows-[auto_1fr_auto]"}>
 				<SheetHeader className={"text-3xl"}>Your Cart</SheetHeader>
-				<div className="p-5">
+				<div className="p-5 overflow-y-auto">
 					{cart.length ? (
 						cart.map((item) => {
 							return (
 								<div
 									key={item.id}
-									className="flex justify-between items-center gap-2"
+									className="flex justify-between gap-2"
 								>
 									<div className="flex items-center gap-2">
 										<Image
