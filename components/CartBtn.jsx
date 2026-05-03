@@ -21,13 +21,18 @@ export default function CartBtn() {
 		<Sheet>
 			<SheetTrigger>
 				<div className="cursor-pointer relative transition hover:text-black dark:hover:text-white">
-					{cart.length>0&&<span className="absolute text-xs rounded-full -top-3 -right-3  text-white bg-zinc-950 w-5 h-5 flex items-center justify-center">
-											{cart.length}
-										</span>}
+					{cart.length > 0 && (
+						<span className="absolute text-xs rounded-full -top-3 -right-3  text-white bg-zinc-950 w-5 h-5 flex items-center justify-center">
+							{cart.length}
+						</span>
+					)}
 					<HugeiconsIcon icon={ShoppingBag02Icon} />
 				</div>
 			</SheetTrigger>
-			<SheetContent showCloseButton={false} className={"grid grid-rows-[auto_1fr_auto]"}>
+			<SheetContent
+				showCloseButton={false}
+				className={"grid grid-rows-[auto_1fr_auto]"}
+			>
 				<SheetHeader className={"text-3xl"}>Your Cart</SheetHeader>
 				<div className="p-5 overflow-y-auto">
 					{cart.length ? (
@@ -35,7 +40,7 @@ export default function CartBtn() {
 							return (
 								<div
 									key={item.id}
-									className="flex justify-between gap-2"
+									className="flex justify-between gap-2 mb-3"
 								>
 									<div className="flex items-center gap-2">
 										<Image
@@ -46,17 +51,30 @@ export default function CartBtn() {
 											className="object-cover aspect-square rounded-md"
 										/>
 										<div>
-											<Link href={"/p/"+item.slug} className="font-serif text-base">
-												{item.title}
-											</Link>
-											<p className="text-black dark:text-white">₹{item.discountedPrice}</p>
+											<SheetClose
+												nativeButton={false}
+												render={
+													<Link
+														href={"/p/" + item.slug}
+														className="font-serif text-base"
+													>
+														{item.title}
+													</Link>
+												}
+											/>
+											<p className="text-black dark:text-white">
+												₹{item.discountedPrice}
+											</p>
 										</div>
 									</div>
 									<Button
 										variant="destructive"
 										onClick={() => remove(item.id)}
 									>
-										<HugeiconsIcon className="size-4" icon={Delete} />
+										<HugeiconsIcon
+											className="size-4"
+											icon={Delete}
+										/>
 									</Button>
 								</div>
 							);
@@ -67,7 +85,9 @@ export default function CartBtn() {
 				</div>
 				<SheetFooter>
 					<div className="border-t py-3">
-						<p className="text-xl text-black dark:text-white">Total: ₹{total}</p>
+						<p className="text-xl text-black dark:text-white">
+							Total: ₹{total}
+						</p>
 					</div>
 					<SheetClose
 						render={<Button variant="outline">Close</Button>}

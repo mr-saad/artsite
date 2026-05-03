@@ -1,11 +1,36 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Thumbs,Pagination,Keyboard,Mousewheel } from "swiper/modules";
+import { Thumbs, Pagination, Keyboard, Mousewheel } from "swiper/modules";
 import Image from "next/image";
 import { useState } from "react";
 import "swiper/css";
 import "swiper/css/pagination";
+import { cn } from "@/lib/utils";
+
+function SlideContent({ img, className }) {
+	const [imgSrc, setImgSrc] = useState(img.url);
+
+	return (
+		<SwiperSlide>
+			<Image
+				onError={() =>
+					setImgSrc(
+						"https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=800&q=80",
+					)
+				}
+				src={imgSrc}
+				alt={img.alt}
+				width={400}
+				height={400}
+				className={cn(
+					"aspect-square object-cover w-full cursor-grab active:cursor-grabbing",
+					className,
+				)}
+			/>
+		</SwiperSlide>
+	);
+}
 
 export default function ImgSwiper({ imgs, title }) {
 	const [thumbsSwiper, setThumbsSwiper] = useState();
@@ -13,9 +38,9 @@ export default function ImgSwiper({ imgs, title }) {
 	return (
 		<div className="min-w-0 max-w-lg">
 			<Swiper
-				modules={[Thumbs,Pagination,Keyboard]}
+				modules={[Thumbs, Pagination, Keyboard]}
 				keyboard
-				pagination={{dynamicBullets:true, clickable:true}}
+				pagination={{ dynamicBullets: true, clickable: true }}
 				thumbs={{
 					swiper: thumbsSwiper,
 					slideThumbActiveClass: "opacity-100",
@@ -25,14 +50,8 @@ export default function ImgSwiper({ imgs, title }) {
 			>
 				{imgs.map((img, index) => {
 					return (
-						<SwiperSlide key={img + index}>
-							<Image
-								src={img}
-								alt={title}
-								width={400}
-								height={400}
-								className="aspect-square object-cover w-full cursor-grab active:cursor-grabbing"
-							/>
+						<SwiperSlide key={img.alt}>
+							<SlideContent img={img} />
 						</SwiperSlide>
 					);
 				})}
@@ -41,20 +60,18 @@ export default function ImgSwiper({ imgs, title }) {
 				slidesPerView={4}
 				watchSlidesProgress
 				onSwiper={setThumbsSwiper}
-				modules={[Thumbs,Keyboard,Mousewheel]}
+				modules={[Thumbs, Keyboard, Mousewheel]}
 				keyboard
 				mousewheel
 				className="bg-white sm:mx-0!"
 			>
 				{imgs.map((img, index) => {
 					return (
-						<SwiperSlide className="opacity-70 transition-all! cursor-pointer" key={img + index}>
-							<Image
-								src={img}
-								alt={title}
-								width={200}
-								height={200}
-								className="aspect-square object-cover w-full"
+						<SwiperSlide className="opacity-65" key={img.alt}>
+							<SlideContent
+								key={img.alt}
+								img={img}
+								className="cursor-auto active:cursor-auto"
 							/>
 						</SwiperSlide>
 					);

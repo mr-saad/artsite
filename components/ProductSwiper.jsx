@@ -1,18 +1,17 @@
-"use client"
+"use client";
 
-import "swiper/css"
+import "swiper/css";
 // import "swiper/css/navigation"
-import "swiper/css/pagination"
-import { Swiper, SwiperSlide } from "swiper/react"
-import Product from "./Product"
-import { Keyboard, Navigation, Pagination } from "swiper/modules"
+import "swiper/css/pagination";
+import { Swiper, SwiperSlide } from "swiper/react";
+import Product from "./Product";
+import { Keyboard, Pagination } from "swiper/modules";
 
 export default function ProductSwiper({ products }) {
   return (
     <Swiper
       className="my-5"
-      modules={[Navigation, Pagination, Keyboard]}
-      // navigation
+      modules={[Pagination, Keyboard]}
       keyboard
       loop
       pagination={{ dynamicBullets: true, clickable: true }}
@@ -32,8 +31,8 @@ export default function ProductSwiper({ products }) {
           <SwiperSlide key={prod.title} className="h-auto!">
             <Product {...prod} />
           </SwiperSlide>
-        )
+        );
       })}
     </Swiper>
-  )
+  );
 }
