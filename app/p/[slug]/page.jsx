@@ -27,7 +27,6 @@ export default async function SlugPage({ params }) {
 		.slice(0, 4);
 
 	const mayLike = getMayLikes();
-	console.log(mayLike);
 
 	return (
 		<Section>

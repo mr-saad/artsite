@@ -12,27 +12,25 @@ function SlideContent({ img, className }) {
 	const [imgSrc, setImgSrc] = useState(img.url);
 
 	return (
-		<SwiperSlide>
-			<Image
-				onError={() =>
-					setImgSrc(
-						"https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=800&q=80",
-					)
-				}
-				src={imgSrc}
-				alt={img.alt}
-				width={400}
-				height={400}
-				className={cn(
-					"aspect-square object-cover w-full cursor-grab active:cursor-grabbing",
-					className,
-				)}
-			/>
-		</SwiperSlide>
+		<Image
+			onError={() =>
+				setImgSrc(
+					"https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=800&q=80",
+				)
+			}
+			src={imgSrc}
+			alt={img.alt}
+			width={400}
+			height={400}
+			className={cn(
+				"aspect-square object-cover w-full cursor-grab active:cursor-grabbing",
+				className,
+			)}
+		/>
 	);
 }
 
-export default function ImgSwiper({ imgs, title }) {
+export default function ImgSwiper({ imgs }) {
 	const [thumbsSwiper, setThumbsSwiper] = useState();
 
 	return (
@@ -42,10 +40,12 @@ export default function ImgSwiper({ imgs, title }) {
 				keyboard
 				pagination={{ dynamicBullets: true, clickable: true }}
 				thumbs={{
-					swiper: thumbsSwiper,
+					swiper:
+						thumbsSwiper && !thumbsSwiper.destroyed
+							? thumbsSwiper
+							: null,
 					slideThumbActiveClass: "opacity-100",
 				}}
-				loop
 				className="bg-white sm:mx-0!"
 			>
 				{imgs.map((img, index) => {
@@ -69,9 +69,8 @@ export default function ImgSwiper({ imgs, title }) {
 					return (
 						<SwiperSlide className="opacity-65" key={img.alt}>
 							<SlideContent
-								key={img.alt}
 								img={img}
-								className="cursor-auto active:cursor-auto"
+								className="cursor-pointer active:cursor-pointer"
 							/>
 						</SwiperSlide>
 					);

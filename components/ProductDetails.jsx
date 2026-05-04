@@ -34,6 +34,7 @@ export default function ProductDetails({
       <div className="my-2 mb-5 flex gap-2">
         {isInCart ? (
           <Button
+            size="lg"
             title="Remove from Cart"
             onClick={() => remove(id)}
             variant="destructive"
@@ -42,6 +43,7 @@ export default function ProductDetails({
           </Button>
         ) : (
           <Button
+            size="lg"
             title="Add to Cart"
             onClick={() =>
               add({
@@ -59,7 +61,7 @@ export default function ProductDetails({
             <HugeiconsIcon className="size-4" icon={ShoppingBagAddIcon} />
           </Button>
         )}
-        <Button>Buy it Now</Button>
+        <Button size="lg">Buy it Now</Button>
       </div>
       <div className="prose">
         <p>{description}</p>

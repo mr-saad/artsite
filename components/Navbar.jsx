@@ -78,15 +78,15 @@ export default function Navbar() {
               ? "visible pointer-events-auto opacity-100"
               : "invisible pointer-events-none opacity-0 ",
 
-            "fixed md:visible md:pointer-events-auto justify-start md:justify-center items-start md:items-center md:opacity-100  transition-all duration-300 max-w-full w-full h-full z-4 bg-black/80 backdrop-blur-xs md:backdrop-blur-none md:bg-transparent left-0 top-0 md:static",
+            "fixed md:visible md:pointer-events-auto justify-start md:justify-center items-start md:items-center md:opacity-100  transition-all duration-150 max-w-full w-full h-full z-4 bg-black/80 backdrop-blur-xs md:backdrop-blur-none md:bg-transparent left-0 top-0 md:static",
           )}
         >
           <NavigationMenuList
             className={cn(
               isNavOpen
                 ? "translate-x-0 opacity-100"
-                : "-translate-x-full opacity-0",
-              "items-start flex-wrap transition-all md:translate-x-0 md:opacity-100 fixed top-0 left-0 md:static justify-start md:justify-center pt-20 md:pt-0 w-3/4 px-3 md:px-0 h-full flex-initial bg-zinc-100 md:items-center flex-col md:flex-row",
+                : "-translate-x-4.5 opacity-0",
+              "items-start flex-wrap transition-all duration-200 ease-in-out md:translate-x-0 md:opacity-100 fixed top-0 left-0 md:static justify-start md:justify-center pt-20 md:pt-0 w-3/4 px-3 md:px-0 h-full flex-initial bg-zinc-100 md:items-center flex-col md:flex-row",
             )}
           >
             {categories.map((ct) => {

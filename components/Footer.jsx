@@ -16,7 +16,7 @@ export default function Footer() {
         {categories.slice(0, 4).map((ct) => {
           return (
             <div key={ct.id}>
-              <p className="text-black dark:text-white text-xl font-serif">
+              <p className="text-black dark:text-white text-xl font-serif font-bold">
                 {ct.title}
               </p>
               <ul>
