@@ -1,15 +1,15 @@
-"use client";
+"use client"
 
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "./ui/button";
-import { HugeiconsIcon } from "@hugeicons/react";
+import Image from "next/image"
+import Link from "next/link"
+import { Button } from "./ui/button"
+import { HugeiconsIcon } from "@hugeicons/react"
 import {
   ShoppingBagAddIcon,
   ShoppingBagRemoveIcon,
-} from "@hugeicons/core-free-icons";
-import { add, remove, useCart } from "@/lib/store/useCart";
-import { useState } from "react";
+} from "@hugeicons/core-free-icons"
+import { add, remove, useCart } from "@/lib/store/useCart"
+import { useState } from "react"
 
 export default function Product({
   id,
@@ -20,11 +20,11 @@ export default function Product({
   discountPercent,
   slug,
 }) {
-  const [imgSrc, setImgSrc] = useState(image);
+  const [imgSrc, setImgSrc] = useState(image)
 
-  const cart = useCart((state) => state.items);
+  const cart = useCart((state) => state.items)
 
-  const isInCart = cart.some((item) => item.id === id);
+  const isInCart = cart.some((item) => item.id === id)
 
   return (
     <div
@@ -85,5 +85,5 @@ export default function Product({
         )}
       </div>
     </div>
-  );
+  )
 }

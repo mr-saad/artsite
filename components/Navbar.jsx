@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import Link from "next/link";
+import Link from "next/link"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -8,26 +8,26 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "./ui/navigation-menu";
-import { cn } from "@/lib/utils";
-import { useEffect, useState } from "react";
-import CartBtn from "./CartBtn";
-import { categories } from "@/lib/data/products";
+} from "./ui/navigation-menu"
+import { cn } from "@/lib/utils"
+import { useEffect, useState } from "react"
+import CartBtn from "./CartBtn"
+import { categories } from "@/lib/data/products"
 
 export default function Navbar() {
-  const [isNavOpen, setIsNavOpen] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
+  const [isNavOpen, setIsNavOpen] = useState(false)
+  const [scrollY, setScrollY] = useState(0)
 
   const handleOverlay = (e) => {
-    if (e.target == e.currentTarget) setIsNavOpen(false);
-  };
+    if (e.target == e.currentTarget) setIsNavOpen(false)
+  }
 
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
+    const handleScroll = () => setScrollY(window.scrollY)
 
-    window.addEventListener("scroll", handleScroll);
-    return () => removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener("scroll", handleScroll)
+    return () => removeEventListener("scroll", handleScroll)
+  }, [])
 
   return (
     <header
@@ -95,28 +95,28 @@ export default function Navbar() {
                   <NavigationMenuTrigger className="transition hover:text-black dark:hover:text-white">
                     {ct.title}
                   </NavigationMenuTrigger>
-                  {ct.subCategories && (
+                  {ct.subCategories.length > 0 && (
                     <NavigationMenuContent>
                       <ul className="max-w-full">
-                        {ct.subCategories.map((p) => {
+                        {ct.subCategories.map((sb) => {
                           return (
-                            <li key={p.href}>
+                            <li key={sb.id}>
                               <Link
                                 onClick={() => setIsNavOpen(false)}
                                 className="transition block px-3 py-1 text-zinc-500 hover:text-black dark:hover:text-white"
-                                href={p.href}
-                                title={p.title}
+                                href={"/c/" + sb.id}
+                                title={sb.title}
                               >
-                                {p.title}
+                                {sb.title}
                               </Link>
                             </li>
-                          );
+                          )
                         })}
                       </ul>
                     </NavigationMenuContent>
                   )}
                 </NavigationMenuItem>
-              );
+              )
             })}
             <NavigationMenuItem>
               <NavigationMenuLink
@@ -151,5 +151,5 @@ export default function Navbar() {
         </div>
       </div>
     </header>
-  );
+  )
 }

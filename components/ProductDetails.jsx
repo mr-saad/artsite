@@ -1,12 +1,13 @@
-"use client";
-import { add, remove, useCart } from "@/lib/store/useCart";
-import { Button } from "./ui/button";
-import { HugeiconsIcon } from "@hugeicons/react";
+"use client"
+import { add, remove, useCart } from "@/lib/store/useCart"
+import { Button } from "./ui/button"
+import { HugeiconsIcon } from "@hugeicons/react"
 import {
   ShoppingBagAddIcon,
   ShoppingBagRemoveIcon,
-} from "@hugeicons/core-free-icons";
-import Markdown from "react-markdown";
+} from "@hugeicons/core-free-icons"
+import Markdown from "react-markdown"
+import { RichText } from "@payloadcms/richtext-lexical/react"
 
 export default function ProductDetails({
   id,
@@ -18,9 +19,9 @@ export default function ProductDetails({
   discountedPrice,
   discountPercent,
 }) {
-  const cart = useCart((state) => state.items);
+  const cart = useCart((state) => state.items)
 
-  const isInCart = cart.some((item) => item.id === id);
+  const isInCart = cart.some((item) => item.id === id)
 
   return (
     <div>
@@ -65,8 +66,8 @@ export default function ProductDetails({
       </div>
       <div className="prose">
         <p>{description}</p>
-        <Markdown>{body}</Markdown>
+        <RichText data={body} />
       </div>
     </div>
-  );
+  )
 }

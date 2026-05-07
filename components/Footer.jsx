@@ -1,9 +1,9 @@
-import Link from "next/link";
-import { Button } from "./ui/button";
-import { Field } from "./ui/field";
-import { Input } from "./ui/input";
-import Section from "./ui/section";
-import { categories } from "@/lib/data/products";
+import Link from "next/link"
+import { Button } from "./ui/button"
+import { Field } from "./ui/field"
+import { Input } from "./ui/input"
+import Section from "./ui/section"
+import { categories } from "@/lib/data/products"
 
 export default function Footer() {
   return (
@@ -24,17 +24,17 @@ export default function Footer() {
                   return (
                     <li key={sb.id} className="leading-7">
                       <Link
-                        href={sb.href}
+                        href={"/c/" + sb.id}
                         className="transition focus-visible:text-black hover:text-black dark:focus-visible:text-white dark:hover:text-white"
                       >
                         {sb.title}
                       </Link>
                     </li>
-                  );
+                  )
                 })}
               </ul>
             </div>
-          );
+          )
         })}
       </Section>
       <Section>
@@ -77,5 +77,5 @@ export default function Footer() {
         </div>
       </Section>
     </footer>
-  );
+  )
 }

@@ -1,12 +1,35 @@
-import BackToTop from "@/components/BackToTop";
-import ProductSection from "@/components/ProductSection";
-import ReviewsSection from "@/components/ReviewsSection";
-import { productSections } from "@/lib/data/homeProductSections";
-import { categories } from "@/lib/data/products";
-import Image from "next/image";
-import Link from "next/link";
+import BackToTop from "@/components/BackToTop"
+import ProductSection from "@/components/ProductSection"
+import ReviewsSection from "@/components/ReviewsSection"
+// import { productSections } from "@/lib/data/homeProductSections"
+import { categories } from "@/lib/data/products"
+import { getProducts } from "@/lib/server/getProducts"
+import Image from "next/image"
+import Link from "next/link"
 
-export default function Home() {
+const sections = [
+  "nature-paintings",
+  "vintage-porcelain-plates",
+  "lippan-art-mirror-work",
+  "oversized-wall-canvas",
+  "hand-painted-terracotta-pots",
+]
+
+export default async function Home() {
+  const products = await getProducts()
+
+  const productSections = sections.map((sec) => {
+    return {
+      title: sec
+        .split("-")
+        .map((c) => c[0].toUpperCase() + c.slice(1))
+        .join(" "),
+      products: products.filter((prod) => {
+        return prod.categories?.some((ct) => ct.slug === sec)
+      }),
+    }
+  })
+
   return (
     <>
       <BackToTop />
@@ -35,11 +58,11 @@ export default function Home() {
               <Link
                 className="block font-serif text-3xl transition p-5 outline text-white hover:text-black hover:bg-zinc-100 focus-visible:text-black focus-visible:bg-zinc-100"
                 key={ct.id}
-                href={ct.baseRoute}
+                href={"/c/" + ct.id}
               >
                 {ct.title}
               </Link>
-            );
+            )
           })}
         </div>
         <Image
@@ -52,9 +75,9 @@ export default function Home() {
       </div>
 
       {productSections.map((sec) => {
-        return <ProductSection key={sec.title} {...sec} />;
+        return <ProductSection key={sec.title} {...sec} />
       })}
       <ReviewsSection />
     </>
-  );
+  )
 }
