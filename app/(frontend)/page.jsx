@@ -17,6 +17,7 @@ const sections = [
 
 export default async function Home() {
   const products = await getProducts()
+  console.log(products)
 
   const productSections = sections.map((sec) => {
     return {

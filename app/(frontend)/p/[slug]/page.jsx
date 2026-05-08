@@ -28,7 +28,7 @@ export default async function SlugPage({ params }) {
   if (!product) return notFound()
   // productsMap[slug]
 
-  console.log(product)
+  // console.log(product)
 
   //   const products = await getProducts()
 
