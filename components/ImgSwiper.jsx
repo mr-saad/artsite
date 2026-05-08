@@ -9,7 +9,10 @@ import "swiper/css/pagination"
 import { cn } from "@/lib/utils"
 
 function SlideContent({ img, className }) {
-  const [imgSrc, setImgSrc] = useState(img.url)
+  const [imgSrc, setImgSrc] = useState(
+    img.url ||
+      "https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=800&q=80",
+  )
 
   return (
     <Image

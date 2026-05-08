@@ -17,19 +17,26 @@ const sections = [
 
 export default async function Home() {
   const products = await getProducts()
-  console.log(products)
 
-  const productSections = sections.map((sec) => {
-    return {
-      title: sec
-        .split("-")
-        .map((c) => c[0].toUpperCase() + c.slice(1))
-        .join(" "),
-      products: products.filter((prod) => {
-        return prod.categories?.some((ct) => ct.slug === sec)
-      }),
-    }
-  })
+  const productSections = await Promise.all(
+    sections.map(async (sec) => {
+      const filteredProducts = await getProducts({
+        where: { "categories.slug": { in: sec } },
+        limit: 4,
+      })
+      console.log(filteredProducts)
+      return {
+        title: sec
+          .split("-")
+          .map((c) => c[0].toUpperCase() + c.slice(1))
+          .join(" "),
+        products: filteredProducts,
+        //   products.filter((prod) => {
+        //   return prod.categories?.some((ct) => ct.slug === sec)
+        // }),
+      }
+    }),
+  )
 
   return (
     <>

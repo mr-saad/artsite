@@ -20,7 +20,10 @@ export default function Product({
   discountPercent,
   slug,
 }) {
-  const [imgSrc, setImgSrc] = useState(image)
+  const [imgSrc, setImgSrc] = useState(
+    image ||
+      "https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=800&q=80",
+  )
 
   const cart = useCart((state) => state.items)
 
