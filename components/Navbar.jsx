@@ -33,7 +33,7 @@ export default function Navbar() {
     <header
       className={cn(
         "px-5 py-3 z-2 sticky top-0 bg-zinc-100 transition",
-        scrollY > 100 && "shadow",
+        scrollY > 20 && "shadow",
       )}
     >
       <div className="container cursor-pointer flex gap-5 items-center justify-between mx-auto">

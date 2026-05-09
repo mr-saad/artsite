@@ -1,6 +1,18 @@
-import { reviews } from "@/lib/data/reviews";
-import StarRating from "./StartRating";
-import Section from "./ui/section";
+"use client"
+import { reviews } from "@/lib/data/reviews"
+import StarRating from "./StartRating"
+import Section from "./ui/section"
+import { motion, stagger } from "motion/react"
+
+const gridVariants = {
+  visible: { transition: { delayChildren: stagger(0.1) } },
+  invisible: {},
+}
+
+const childVariants = {
+  visible: { opacity: 1, y: 0, transition: { bounce: 0 } },
+  invisible: { opacity: 0, y: 10 },
+}
 
 export default function ReviewsSection() {
   return (
@@ -18,9 +30,15 @@ export default function ReviewsSection() {
         </div>
 
         {/* Masonry-style Grid (CSS Columns) */}
-        <div className="md:columns-2 lg:columns-3 gap-6 space-y-6">
+        <motion.div
+          variants={gridVariants}
+          initial="invisible"
+          whileInView={"visible"}
+          className="md:columns-2 lg:columns-3 gap-6 space-y-6"
+        >
           {reviews.map((review) => (
-            <div
+            <motion.div
+              variants={childVariants}
               key={review.id}
               className="break-inside-avoid bg-gray-50 dark:bg-zinc-900 p-6 sm:p-8 rounded-lg border border-gray-200 dark:border-zinc-800 shadow-sm"
             >
@@ -45,10 +63,10 @@ export default function ReviewsSection() {
               <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base leading-relaxed before:text-xl after:text-xl before:content-[open-quote] after:content-[close-quote]">
                 {review.body}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </Section>
     </section>
-  );
+  )
 }

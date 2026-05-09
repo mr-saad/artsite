@@ -56,10 +56,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="flex gap-5 flex-wrap justify-between mt-5">
-          <p>
-            Copyright &copy; {new Date().getFullYear()} ArtSite. All rights
-            reserved.
-          </p>
+          <p>Copyright &copy; 2026 ArtSite. All rights reserved.</p>
           <div>
             <Link
               className="transition hover:text-black dark:hover:text-white mr-3"

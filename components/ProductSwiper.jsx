@@ -1,38 +1,14 @@
-"use client";
-
-import "swiper/css";
-// import "swiper/css/navigation"
-import "swiper/css/pagination";
-import { Swiper, SwiperSlide } from "swiper/react";
-import Product from "./Product";
-import { Keyboard, Pagination } from "swiper/modules";
+import "swiper/css"
+import "swiper/css/pagination"
+import Product from "./Product"
+import ProductGrid from "./ui/product-grid"
 
 export default function ProductSwiper({ products }) {
   return (
-    <Swiper
-      className="my-5"
-      modules={[Pagination, Keyboard]}
-      keyboard
-      loop
-      pagination={{ dynamicBullets: true, clickable: true }}
-      slidesPerView={2}
-      spaceBetween={20}
-      breakpoints={{
-        640: {
-          slidesPerView: 3,
-        },
-        1024: {
-          slidesPerView: 4,
-        },
-      }}
-    >
+    <ProductGrid>
       {products.map((prod) => {
-        return (
-          <SwiperSlide key={prod.title} className="h-auto!">
-            <Product {...prod} />
-          </SwiperSlide>
-        );
+        return <Product key={prod.slug} {...prod} />
       })}
-    </Swiper>
-  );
+    </ProductGrid>
+  )
 }

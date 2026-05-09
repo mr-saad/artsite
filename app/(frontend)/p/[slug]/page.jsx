@@ -3,19 +3,25 @@ import Product from "@/components/Product"
 import ProductDetails from "@/components/ProductDetails"
 import ProductGrid from "@/components/ui/product-grid"
 import Section from "@/components/ui/section"
-// import { globalProducts, productsMap } from "@/lib/data/products"
-import { getProducts } from "@/lib/server/getProducts"
+import { payload } from "@/lib/server/payload"
+import { cacheLife } from "next/cache"
 import { notFound } from "next/navigation"
+
+const getProducts = async (filter) => {
+  "use cache"
+  cacheLife("minutes")
+  const { docs } = await payload.find({
+    collection: "products",
+    pagination: false,
+    ...filter,
+  })
+  return docs
+}
 
 export async function generateStaticParams() {
   const products = await getProducts({ select: { slug: true } })
   return products.map((p) => ({ slug: p.slug }))
 }
-
-// const getMayLikes = (products) =>
-//   products
-//     .map((p, i, arr) => arr[Math.floor(Math.random() * arr.length)])
-//     .slice(0, 4)
 
 export default async function SlugPage({ params }) {
   const { slug } = await params
@@ -26,11 +32,6 @@ export default async function SlugPage({ params }) {
   })
   const product = prod[0]
   if (!product) return notFound()
-  // productsMap[slug]
-
-  // console.log(product)
-
-  //   const products = await getProducts()
 
   const similars = await getProducts({
     where: {
@@ -41,9 +42,6 @@ export default async function SlugPage({ params }) {
     },
     limit: 4,
   })
-
-  // .filter((p) => p.category.endsWith(product.category))
-  // .slice(0, 4)
 
   const mayLike = await getProducts({
     limit: 4,

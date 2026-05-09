@@ -91,8 +91,14 @@ export interface Config {
     defaultIDType: string;
   };
   fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    featuredCategories: FeaturedCategory;
+    featuredSections: FeaturedSection;
+  };
+  globalsSelect: {
+    featuredCategories: FeaturedCategoriesSelect<false> | FeaturedCategoriesSelect<true>;
+    featuredSections: FeaturedSectionsSelect<false> | FeaturedSectionsSelect<true>;
+  };
   locale: null;
   widgets: {
     collections: CollectionsWidget;
@@ -433,6 +439,67 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "featuredCategories".
+ */
+export interface FeaturedCategory {
+  id: string;
+  /**
+   * Select the specific categories to highlight on the home page. (Min. 1 - Max. 6)
+   */
+  categories: (string | Category)[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "featuredSections".
+ */
+export interface FeaturedSection {
+  id: string;
+  sections?:
+    | {
+        /**
+         * Select the specific category for Products
+         */
+        category: string | Category;
+        /**
+         * Select the specific products related to category(Min. 1 - Max. 4)
+         */
+        products: (string | Product)[];
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "featuredCategories_select".
+ */
+export interface FeaturedCategoriesSelect<T extends boolean = true> {
+  categories?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "featuredSections_select".
+ */
+export interface FeaturedSectionsSelect<T extends boolean = true> {
+  sections?:
+    | T
+    | {
+        category?: T;
+        products?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

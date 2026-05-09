@@ -9,6 +9,8 @@ import { Users } from "./collections/Users"
 import { Media } from "./collections/Media"
 import { Products } from "./collections/Products"
 import { Categories } from "./collections/Categories"
+import { FeaturedCategories } from "./globals/FeaturedCategories"
+import { FeaturedSections } from "./globals/FeaturedSections"
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -21,6 +23,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, Products, Categories],
+  globals: [FeaturedCategories, FeaturedSections],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {

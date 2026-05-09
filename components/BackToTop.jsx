@@ -18,7 +18,7 @@ export default function BackToTop() {
     showTop && (
       <button
         onClick={() => scrollTo({ top: 0 })}
-        className="fixed shadow cursor-pointer bottom-5 right-5 bg-white h-8 w-8 rounded-full flex items-center justify-center"
+        className="fixed z-2 shadow cursor-pointer bottom-5 right-5 bg-white h-8 w-8 rounded-full flex items-center justify-center"
       >
         <HugeiconsIcon icon={ArrowUp} />
       </button>

@@ -10,6 +10,12 @@ import {
 } from "@hugeicons/core-free-icons"
 import { add, remove, useCart } from "@/lib/store/useCart"
 import { useState } from "react"
+import { motion } from "motion/react"
+
+const variants = {
+  visible: { opacity: 1, y: 0, transition: { bounce: 0 } },
+  invisible: { opacity: 0, y: 10 },
+}
 
 export default function Product({
   id,
@@ -30,7 +36,8 @@ export default function Product({
   const isInCart = cart.some((item) => item.id === id)
 
   return (
-    <div
+    <motion.div
+      variants={variants}
       title={title}
       className="active:cursor-grabbing bg-white block h-full group"
     >
@@ -87,6 +94,6 @@ export default function Product({
           </Button>
         )}
       </div>
-    </div>
+    </motion.div>
   )
 }
