@@ -34,7 +34,7 @@ function SlideContent({ img, className }) {
 }
 
 export default function ImgSwiper({ imgs }) {
-  const [thumbsSwiper, setThumbsSwiper] = useState()
+  const [thumbsSwiper, setThumbsSwiper] = useState(null)
 
   return (
     <div className="min-w-0">
@@ -60,7 +60,7 @@ export default function ImgSwiper({ imgs }) {
         slidesPerView={4}
         watchSlidesProgress
         onSwiper={setThumbsSwiper}
-        modules={[Thumbs, Keyboard, Mousewheel]}
+        modules={[Keyboard, Mousewheel]}
         keyboard
         mousewheel
         className="bg-white "
