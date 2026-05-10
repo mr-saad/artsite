@@ -12,6 +12,8 @@ import { Categories } from "./collections/Categories"
 import { FeaturedCategories } from "./globals/FeaturedCategories"
 import { FeaturedSections } from "./globals/FeaturedSections"
 
+import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob"
+
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
@@ -22,6 +24,14 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
+  plugins: [
+    vercelBlobStorage({
+      collections: {
+        media: true,
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+    }),
+  ],
   collections: [Users, Media, Products, Categories],
   globals: [FeaturedCategories, FeaturedSections],
   editor: lexicalEditor(),
@@ -33,5 +43,4 @@ export default buildConfig({
     url: process.env.DATABASE_URL || "",
   }),
   sharp,
-  plugins: [],
 })
