@@ -12,9 +12,8 @@ import {
 import { cn } from "@/lib/utils"
 import { useEffect, useState } from "react"
 import CartBtn from "./CartBtn"
-import { categories } from "@/lib/data/products"
 
-export default function Navbar() {
+export default function Navbar({ categories }) {
   const [isNavOpen, setIsNavOpen] = useState(false)
   const [scrollY, setScrollY] = useState(0)
 
@@ -104,7 +103,7 @@ export default function Navbar() {
                               <Link
                                 onClick={() => setIsNavOpen(false)}
                                 className="transition block px-3 py-1 text-zinc-500 hover:text-black dark:hover:text-white"
-                                href={"/c/" + sb.id}
+                                href={"/c/" + sb.slug}
                                 title={sb.title}
                               >
                                 {sb.title}

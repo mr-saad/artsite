@@ -92,10 +92,12 @@ export interface Config {
   };
   fallbackLocale: null;
   globals: {
+    navbarCategories: NavbarCategory;
     featuredCategories: FeaturedCategory;
     featuredSections: FeaturedSection;
   };
   globalsSelect: {
+    navbarCategories: NavbarCategoriesSelect<false> | NavbarCategoriesSelect<true>;
     featuredCategories: FeaturedCategoriesSelect<false> | FeaturedCategoriesSelect<true>;
     featuredSections: FeaturedSectionsSelect<false> | FeaturedSectionsSelect<true>;
   };
@@ -442,6 +444,19 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navbarCategories".
+ */
+export interface NavbarCategory {
+  id: string;
+  /**
+   * Select the specific categories to highlight in Navbar. (Min. 1 - Max. 5)
+   */
+  categories: (string | Category)[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "featuredCategories".
  */
 export interface FeaturedCategory {
@@ -474,6 +489,16 @@ export interface FeaturedSection {
     | null;
   updatedAt?: string | null;
   createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navbarCategories_select".
+ */
+export interface NavbarCategoriesSelect<T extends boolean = true> {
+  categories?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

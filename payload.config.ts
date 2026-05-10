@@ -11,6 +11,7 @@ import { Products } from "./collections/Products"
 import { Categories } from "./collections/Categories"
 import { FeaturedCategories } from "./globals/FeaturedCategories"
 import { FeaturedSections } from "./globals/FeaturedSections"
+import { NavbarCategories } from "./globals/NavbarCategories"
 
 import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob"
 
@@ -33,7 +34,7 @@ export default buildConfig({
     }),
   ],
   collections: [Users, Media, Products, Categories],
-  globals: [FeaturedCategories, FeaturedSections],
+  globals: [NavbarCategories, FeaturedCategories, FeaturedSections],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {

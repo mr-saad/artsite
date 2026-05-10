@@ -1,29 +1,18 @@
-import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-})
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-})
+import { getCachedCategories } from "@/lib/server/getCachedCategories"
 
 export const metadata = {
   title: "ArtSite",
   description: "Where Silence meets Serenity",
 }
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const navCts = await getCachedCategories()
+
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="en" className={`h-full antialiased`}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -47,7 +36,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="min-h-full">
-        <Navbar />
+        <Navbar categories={navCts} />
         {children}
         <Footer />
       </body>
