@@ -20,14 +20,14 @@ const variants = {
 export default function Product({
   id,
   title,
-  image,
+  coverImage,
   price,
   discountedPrice,
   discountPercent,
   slug,
 }) {
   const [imgSrc, setImgSrc] = useState(
-    image ||
+    coverImage.url ||
       "https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=800&q=80",
   )
 

@@ -22,11 +22,13 @@ export const Products: CollectionConfig = {
           name: "categories",
           type: "relationship",
           relationTo: "categories",
+          maxRows: 2,
+          minRows: 1,
           hasMany: true,
           required: true,
           admin: {
             description:
-              "Select all that apply (e.g., 'Paintings' AND 'Nature Paintings')",
+              "Select all that apply (e.g., 'Paintings' AND 'Nature Paintings'; Min.1 - Max.2)",
           },
         },
       ],
@@ -60,6 +62,7 @@ export const Products: CollectionConfig = {
     {
       name: "images",
       type: "array",
+      defaultValue: [],
       label: "Product Images & Variations",
       fields: [
         {

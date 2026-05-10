@@ -186,7 +186,7 @@ export interface Product {
   slug: string;
   title: string;
   /**
-   * Select all that apply (e.g., 'Paintings' AND 'Nature Paintings')
+   * Select all that apply (e.g., 'Paintings' AND 'Nature Paintings'; Min.1 - Max.2)
    */
   categories: (string | Category)[];
   description?: string | null;

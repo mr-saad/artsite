@@ -33,6 +33,8 @@ export default async function SlugPage({ params }) {
   const product = prod[0]
   if (!product) return notFound()
 
+  console.log(product)
+
   const similars = await getProducts({
     where: {
       and: [
@@ -53,26 +55,30 @@ export default async function SlugPage({ params }) {
         <ImgSwiper
           imgs={
             product.images.length > 0
-              ? product.images.length
+              ? product.images
               : Array(5).fill({
-                  url: "https://dessineart.com/cdn/shop/files/Image-1-Quantum-Waves.jpg",
-                  alt: "Image-1-Quantum-Waves",
+                  image: {
+                    url: "https://dessineart.com/cdn/shop/files/Image-1-Quantum-Waves.jpg",
+                    alt: "Image-1-Quantum-Waves",
+                  },
                 })
           }
           title={product.title}
         />
         <ProductDetails {...product} />
       </div>
-      <div className="my-10">
-        <h2 className="text-center mb-5 text-2xl text-black dark:text-white">
-          Similar to {product.title}
-        </h2>
-        <ProductGrid>
-          {similars.map((smlr) => {
-            return <Product {...smlr} key={smlr.id} />
-          })}
-        </ProductGrid>
-      </div>
+      {similars.length > 0 && (
+        <div className="my-10">
+          <h2 className="text-center mb-5 text-2xl text-black dark:text-white">
+            Similar to {product.title}
+          </h2>
+          <ProductGrid>
+            {similars.map((smlr) => {
+              return <Product {...smlr} key={smlr.id} />
+            })}
+          </ProductGrid>
+        </div>
+      )}
       <div className="my-10">
         <h2 className="text-center mb-5 text-2xl text-black dark:text-white">
           You May Also Like

@@ -8,7 +8,7 @@ import "swiper/css"
 import "swiper/css/pagination"
 import { cn } from "@/lib/utils"
 
-function SlideContent({ img, className }) {
+function SlideContent({ img, className, index }) {
   const [imgSrc, setImgSrc] = useState(
     img.url ||
       "https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=800&q=80",
@@ -21,6 +21,7 @@ function SlideContent({ img, className }) {
           "https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=800&q=80",
         )
       }
+      loading={index === 0 ? "eager" : "lazy"}
       src={imgSrc}
       alt={img.alt}
       width={400}
@@ -51,7 +52,7 @@ export default function ImgSwiper({ imgs }) {
         {imgs.map((img, index) => {
           return (
             <SwiperSlide key={img.alt + index}>
-              <SlideContent img={img} />
+              <SlideContent index={index} img={img.image} />
             </SwiperSlide>
           )
         })}
@@ -69,7 +70,8 @@ export default function ImgSwiper({ imgs }) {
           return (
             <SwiperSlide className="opacity-65" key={img.alt + index}>
               <SlideContent
-                img={img}
+                index={index}
+                img={img.image}
                 className="cursor-pointer active:cursor-grabbing"
               />
             </SwiperSlide>
