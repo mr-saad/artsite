@@ -27,7 +27,7 @@ export default function Product({
   slug,
 }) {
   const [imgSrc, setImgSrc] = useState(
-    coverImage.url ||
+    coverImage?.url ||
       "https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=800&q=80",
   )
 
