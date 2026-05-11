@@ -6,7 +6,6 @@ import {
   ShoppingBagAddIcon,
   ShoppingBagRemoveIcon,
 } from "@hugeicons/core-free-icons"
-import Markdown from "react-markdown"
 import { RichText } from "@payloadcms/richtext-lexical/react"
 
 export default function ProductDetails({
@@ -18,6 +17,7 @@ export default function ProductDetails({
   price,
   discountedPrice,
   discountPercent,
+  coverImage,
 }) {
   const cart = useCart((state) => state.items)
 
@@ -55,6 +55,7 @@ export default function ProductDetails({
                 discountPercent,
                 slug,
                 image:
+                  coverImage?.url ||
                   "https://dessineart.com/cdn/shop/files/Image-1-Quantum-Waves.jpg",
               })
             }

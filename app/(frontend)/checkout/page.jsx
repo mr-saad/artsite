@@ -9,6 +9,7 @@ import { Delete } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 import Image from "next/image"
 import Link from "next/link"
+import GooglePayButton from "@google-pay/button-react"
 
 export default function Checkout() {
   const cart = useCart((state) => state.items)
@@ -22,25 +23,26 @@ export default function Checkout() {
           {cart.length > 0 ? (
             cart.map((item) => {
               return (
-                <div className="gap-2 flex" key={item.id}>
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    width={50}
-                    height={50}
-                    className="object-cover aspect-square rounded-md"
-                  />
-                  <div>
-                    <Link
-                      href={"/p/" + item.slug}
-                      className="font-serif text-base"
-                    >
-                      {item.title}
-                    </Link>
-
-                    <p className="text-black dark:text-white">
-                      ₹{item.discountedPrice}
-                    </p>
+                <div className="gap-2 flex justify-between" key={item.id}>
+                  <div className="gap-2 flex">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      width={50}
+                      height={50}
+                      className="object-cover aspect-square rounded-md"
+                    />
+                    <div>
+                      <Link
+                        href={"/p/" + item.slug}
+                        className="font-serif text-base"
+                      >
+                        {item.title}
+                      </Link>
+                      <p className="text-black dark:text-white">
+                        ₹{item.discountedPrice}
+                      </p>
+                    </div>
                   </div>
 
                   <Button variant="destructive" onClick={() => remove(item.id)}>
@@ -67,9 +69,46 @@ export default function Checkout() {
             <FieldLabel>Mobile Number</FieldLabel>
             <Input required type={"number"} minLength={10} maxLength={10} />
           </Field>
-          <Button type="button" size="lg">
+          <GooglePayButton
+            environment="TEST"
+            paymentRequest={{
+              apiVersion: 2,
+              apiVersionMinor: 0,
+              allowedPaymentMethods: [
+                {
+                  type: "CARD",
+                  parameters: {
+                    allowedAuthMethods: ["PAN_ONLY", "CRYPTOGRAM_3DS"],
+                    allowedCardNetworks: ["MASTERCARD", "VISA"],
+                  },
+                  tokenizationSpecification: {
+                    type: "PAYMENT_GATEWAY",
+                    parameters: {
+                      gateway: "example",
+                      gatewayMerchantId: "exampleGatewayMerchantId",
+                    },
+                  },
+                },
+              ],
+              merchantInfo: {
+                merchantId: "12345678901234567890",
+                merchantName: "Demo Merchant",
+              },
+              transactionInfo: {
+                totalPriceStatus: "FINAL",
+                totalPriceLabel: "Total",
+                totalPrice: total || 1,
+                currencyCode: "INR",
+                countryCode: "IN",
+              },
+            }}
+            onLoadPaymentData={(paymentRequest) => {
+              console.log("load payment data", paymentRequest)
+            }}
+          />
+          {/* <Button type="button" size="lg">
             Proceed
-          </Button>
+          </Button> */}
         </form>
       </div>
     </Section>

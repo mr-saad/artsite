@@ -2,6 +2,7 @@ import "./globals.css"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 import { getCachedCategories } from "@/lib/server/getCachedCategories"
+import BackToTop from "@/components/BackToTop"
 
 export const metadata = {
   title: "ArtSite",
@@ -36,6 +37,7 @@ export default async function RootLayout({ children }) {
         />
       </head>
       <body className="min-h-full">
+        <BackToTop />
         <Navbar categories={navCts} />
         {children}
         <Footer />

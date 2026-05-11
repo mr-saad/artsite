@@ -33,8 +33,6 @@ export default async function SlugPage({ params }) {
   const product = prod[0]
   if (!product) return notFound()
 
-  // console.log(product)
-
   const similars = await getProducts({
     where: {
       and: [

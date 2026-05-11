@@ -10,7 +10,6 @@ import Hero from "./Hero"
 export default function Home() {
   return (
     <>
-      <BackToTop />
       <section className="relative isolate">
         <div className="heroPattern absolute w-full h-full -z-1"></div>
         <div className="container p-5 mx-auto min-h-[80vh] flex items-center justify-center">
