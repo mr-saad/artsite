@@ -33,7 +33,7 @@ export default async function SlugPage({ params }) {
   const product = prod[0]
   if (!product) return notFound()
 
-  console.log(product)
+  // console.log(product)
 
   const similars = await getProducts({
     where: {
@@ -53,15 +53,26 @@ export default async function SlugPage({ params }) {
     <Section>
       <div className="grid sm:grid-cols-2 gap-5">
         <ImgSwiper
+          key={product.id}
           imgs={
             product.images.length > 0
-              ? product.images
-              : Array(5).fill({
-                  image: {
-                    url: "https://dessineart.com/cdn/shop/files/Image-1-Quantum-Waves.jpg",
-                    alt: "Image-1-Quantum-Waves",
-                  },
-                })
+              ? [{ image: product.coverImage }, ...product.images]
+              : product.coverImage
+                ? [
+                    { image: product.coverImage },
+                    ...Array(5).fill({
+                      image: {
+                        url: "https://dessineart.com/cdn/shop/files/Image-1-Quantum-Waves.jpg",
+                        alt: "Image-1-Quantum-Waves",
+                      },
+                    }),
+                  ]
+                : Array(5).fill({
+                    image: {
+                      url: "https://dessineart.com/cdn/shop/files/Image-1-Quantum-Waves.jpg",
+                      alt: "Image-1-Quantum-Waves",
+                    },
+                  })
           }
           title={product.title}
         />

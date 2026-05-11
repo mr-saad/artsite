@@ -37,21 +37,24 @@ function SlideContent({ img, className, index }) {
 export default function ImgSwiper({ imgs }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
 
+  // console.log(imgs)
+
   return (
     <div className="min-w-0">
       <Swiper
         modules={[Thumbs, Pagination, Keyboard]}
         keyboard
         pagination={{ dynamicBullets: true, clickable: true }}
-        thumbs={{
-          swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
-          slideThumbActiveClass: "opacity-100",
-        }}
+        thumbs={
+          thumbsSwiper && !thumbsSwiper.destroyed
+            ? { swiper: thumbsSwiper, slideThumbActiveClass: "opacity-100" }
+            : undefined
+        }
         className="bg-white max-w-lg"
       >
         {imgs.map((img, index) => {
           return (
-            <SwiperSlide key={img.alt + index}>
+            <SwiperSlide key={`main-slide-${index}`}>
               <SlideContent index={index} img={img.image} />
             </SwiperSlide>
           )
@@ -61,14 +64,16 @@ export default function ImgSwiper({ imgs }) {
         slidesPerView={4}
         watchSlidesProgress
         onSwiper={setThumbsSwiper}
+        onDestroy={() => setThumbsSwiper(null)}
         modules={[Keyboard, Mousewheel]}
         keyboard
         mousewheel
+        slideActiveClass="opacity-100"
         className="bg-white "
       >
         {imgs.map((img, index) => {
           return (
-            <SwiperSlide className="opacity-65" key={img.alt + index}>
+            <SwiperSlide className="opacity-65" key={`thumb-slide-${index}`}>
               <SlideContent
                 index={index}
                 img={img.image}
